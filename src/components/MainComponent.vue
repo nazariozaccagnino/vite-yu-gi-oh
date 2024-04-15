@@ -15,7 +15,7 @@
         </div>
         <div class="my-4">
             <ul>
-                <li v-for="(item, index) in store.singleCard">
+                <li v-for="(item, index) in store.cardArray">
                     {{item.name}}
                 </li>
             </ul>
@@ -36,7 +36,7 @@ data(){
 },
     created(){
         axios.get(store.apiUrl).then((elements)=>{
-            this.store.singleCard = elements.data.data
+            this.store.cardArray = elements.data.data
         })
         console.log(this.store.singleCard);
     }
