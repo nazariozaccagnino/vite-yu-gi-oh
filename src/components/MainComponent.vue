@@ -20,7 +20,7 @@
                 </li>
             </ul> -->
             <div class="row">
-                <div class="col-3 d-flex align-items-stretch"  v-for="(item, index) in store.cardArray">
+                <div class="col-3 d-flex align-items-stretch p-2"  v-for="(item, index) in store.cardArray">
                     <div class="card p-2">
                         <img :src="`${this.store.imageUrl}${item.id}.jpg`" class="card-img-top" :alt="item.name">
                         <h5 class="card-title text-center">{{item.name}}</h5>
@@ -46,12 +46,16 @@ export default {
             store
         }
     },
-    created() {
-        axios.get(store.apiUrl).then((elements) => {
+    methods:{
+        getCards(){
+            axios.get(store.apiUrl).then((elements) => {
             this.store.cardArray = elements.data.data
             console.log(this.store.cardArray);
-
         })
+        }
+    },
+    created() {
+        this.getCards()
     }
 }
 
