@@ -20,16 +20,13 @@
                 </li>
             </ul> -->
             <div class="row">
-                <div class="col-3"  v-for="(item, index) in store.cardArray">
-                    <div class="card">
+                <div class="col-3 d-flex align-items-stretch"  v-for="(item, index) in store.cardArray">
+                    <div class="card p-2">
                         <img :src="`${this.store.imageUrl}${item.id}.jpg`" class="card-img-top" :alt="item.name">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                of
-                                the
-                                card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <h5 class="card-title text-center">{{item.name}}</h5>
+                        <div class="card-body">                            
+                            <p class="card-text">{{ item.desc }}</p>
+                            <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
                         </div>
                     </div>
                 </div>
