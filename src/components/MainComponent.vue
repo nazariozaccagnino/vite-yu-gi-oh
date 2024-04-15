@@ -14,11 +14,26 @@
             </div>
         </div>
         <div class="my-4">
-            <ul>
+            <!-- <ul>
                 <li v-for="(item, index) in store.cardArray">
                     {{item.name}}
                 </li>
-            </ul>
+            </ul> -->
+            <div class="row">
+                <div class="col-3"  v-for="(item, index) in store.cardArray">
+                    <div class="card">
+                        <img :src="`${this.store.imageUrl}${item.id}.jpg`" class="card-img-top" :alt="item.name">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                                of
+                                the
+                                card's content.</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -29,16 +44,17 @@ import axios from 'axios'
 export default {
     name: 'MainComponent',
 
-data(){
-    return{
-        store
-    }
-},
-    created(){
-        axios.get(store.apiUrl).then((elements)=>{
+    data() {
+        return {
+            store
+        }
+    },
+    created() {
+        axios.get(store.apiUrl).then((elements) => {
             this.store.cardArray = elements.data.data
+            console.log(this.store.cardArray);
+
         })
-        console.log(this.store.singleCard);
     }
 }
 
