@@ -36,8 +36,8 @@ export default {
         }
     },
     methods: {
-        getCards(value) {
-            console.log(value);
+        getCards() {
+            
             this.store.loading = true;
             axios.get(store.apiUrl).then((elements) => {
                 this.store.cardArray = elements.data.data

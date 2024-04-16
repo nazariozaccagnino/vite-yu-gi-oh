@@ -6,5 +6,6 @@ export const store = reactive({
     imageUrl: 'https://images.ygoprodeck.com/images/cards_small/',
     cardArray: [],
     loading: false,
-
+    archeType: false,
+    textSearch: false,
 });
