@@ -21,4 +21,6 @@ export const store = reactive({
     archetypeList: [],
     typelist: '',
     textinput:'',
+    errormsg: '',
+    errorTrigger: false,
 });

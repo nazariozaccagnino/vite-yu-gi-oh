@@ -15,7 +15,7 @@
         </div>
         <div :class="{ 'd-none': !store.textSearch }">
             <div class="input-group mx-3">
-                <input type="text" class="form-control searchbox" placeholder="Ricerca per nome - premere invio" v-model="store.textinput" @keyup.enter="$emit('textsearch')">
+                <input type="text" class="form-control searchbox" placeholder="Ricerca per nome - only in English" v-model="store.textinput" @keyup="$emit('textsearch')">
             </div>
         </div>
 

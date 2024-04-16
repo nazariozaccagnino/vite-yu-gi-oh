@@ -4,6 +4,7 @@
     </div>
     <div class="text-center">
         <h4>Card caricate: {{ this.store.cardArray.length }}</h4>
+        <div v-if="!store.errorTrigger" class="bg-warning d-inline">{{this.store.errormsg.message}}</div>
     </div>
     <div class="row">
         <div class="col-3 d-flex align-items-stretch p-2" v-for="(item, index) in store.cardArray">
@@ -43,8 +44,9 @@ export default {
                 console.log(this.store.cardArray);
             })
                 .catch((error) => {
-                    // this.store.cardArray = elements.data.error
-                    console.log(error);
+                    this.errorTrigger = true,
+                    this.store.errormsg = error
+                    console.log(this.store.errormsg.message);
                 })
                 .finally(() => {
                     this.store.loading = false;
@@ -64,7 +66,7 @@ export default {
             } else{
                 delete this.store.options.params.name
             }
-            this.getCards()
+                this.getCards()
 
         }
     },
