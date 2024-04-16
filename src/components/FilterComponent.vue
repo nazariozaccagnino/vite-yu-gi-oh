@@ -1,10 +1,16 @@
 <template>
-    <div>
-        <select class="form-select" @change="searchBy(type)" v-model="type">
-            <option default=""></option>
-            <option value="archetypes">Archetipi</option>
-            <option value="textsearch">Testo</option>
-        </select>
+    <div class="d-flex align-items-center">
+        <div class="mx-2">
+            <h5>Cerca per:</h5>
+        </div>
+        <div>
+            <select class="form-select" @change="searchBy(type)" v-model="type">
+                <option default=""></option>
+                <option value="archetypes">Archetipi</option>
+                <option value="textsearch">Testo</option>
+            </select>
+        </div>
+
     </div>
     <div>
         <div class="mx-3" :class="{ 'd-none': !store.archeTypeSelect }">
@@ -15,7 +21,8 @@
         </div>
         <div :class="{ 'd-none': !store.textSearch }">
             <div class="input-group mx-3">
-                <input type="text" class="form-control searchbox" placeholder="Ricerca per nome - only in English" v-model="store.textinput" @keyup="$emit('textsearch')">
+                <input type="text" class="form-control searchbox" placeholder="Ricerca per nome - only in English"
+                    v-model="store.textinput" @keyup="$emit('textsearch')">
             </div>
         </div>
 
@@ -65,7 +72,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.searchbox{
+.searchbox {
     width: 500px;
 }
 </style>
