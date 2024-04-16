@@ -36,10 +36,9 @@ export default {
         }
     },
     methods: {
-        getCards() {
-            
+        getCards() {            
             this.store.loading = true;
-            axios.get(store.apiUrl+store.params).then((elements) => {
+            axios.get(this.store.apiUrl + this.store.endpoints.cards, this.store.options).then((elements) => {
                 this.store.cardArray = elements.data.data
                 console.log(this.store.cardArray);
             })
