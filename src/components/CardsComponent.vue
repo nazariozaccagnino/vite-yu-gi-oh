@@ -1,6 +1,6 @@
 <template>
     <div class="my-4 d-flex">
-        <FilterComponent @changeCard="getCards()"/>
+        <FilterComponent @filterCard="getCards"/>
     </div>
     <div class="text-center">
         <h4>Card caricate: {{ this.store.cardArray.length }}</h4>
@@ -36,7 +36,8 @@ export default {
         }
     },
     methods: {
-        getCards() {
+        getCards(value) {
+            console.log(value);
             this.store.loading = true;
             axios.get(store.apiUrl).then((elements) => {
                 this.store.cardArray = elements.data.data
