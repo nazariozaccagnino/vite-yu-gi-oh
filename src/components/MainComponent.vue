@@ -1,6 +1,8 @@
 <template>
     <div class="container">
-        
+        <div class="my-4 d-flex">
+            <FilterComponent />
+        </div>
         <div class="my-4">
             <CardsComponent />
             <!-- <CardsComponent v-if="store.loading"/> -->
@@ -13,26 +15,24 @@
 import { store } from '../data/store.js';
 import CardsComponent from './CardsComponent.vue';
 import LoadingComponent from './LoadingComponent.vue'
+import FilterComponent from './FilterComponent.vue'
+
 
 export default {
     name: 'MainComponent',
     components: {
         LoadingComponent,
-        CardsComponent
+        CardsComponent,
+        FilterComponent
     },
     data() {
         return {
             store
         }
     },
-    mounted(){
-        console.log(this.store);
-    }
 }
-    
+
 
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>
