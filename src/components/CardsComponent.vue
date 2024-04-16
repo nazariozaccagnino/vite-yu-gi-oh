@@ -1,6 +1,6 @@
 <template>
     <div class="my-4 d-flex">
-        <FilterComponent @filterCard="getCards"/>
+        <FilterComponent @listSearch="archetypeSearch"/>
     </div>
     <div class="text-center">
         <h4>Card caricate: {{ this.store.cardArray.length }}</h4>
@@ -49,7 +49,14 @@ export default {
                 .finally(() => {
                     this.store.loading = false;
                 });
-        }
+        },
+        archetypeSearch(){
+            console.log(this.store.typelist);
+            if(this.store.typelist){
+                this.store.options.params.archetype = this.store.typelist
+            } 
+            this.getCards()
+        },
     },
     created() {
         this.getCards()

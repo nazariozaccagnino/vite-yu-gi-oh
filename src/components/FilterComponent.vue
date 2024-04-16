@@ -7,9 +7,9 @@
         </select>
     </div>
     <div>
-        <div class="mx-3" :class="{'d-none': !store.archeType}">
-            <select class="form-select" @change="$emit('archetypeSearch', this.typelist)" v-model="typelist">
-                <option :value="archetypes.archetype_name" v-for="archetypes in store.archetypeList">{{archetypes.archetype_name}}</option>
+        <div class="mx-3" :class="{'d-none': !store.archeTypeSelect}">
+            <select class="form-select" @change="$emit('listSearch')" v-model="store.typelist">
+                <option default :value="archetypes.archetype_name" v-for="archetypes in store.archetypeList">{{archetypes.archetype_name}}</option>
             </select>
         </div>
         <div :class="{'d-none': !store.textSearch}">textSearch</div>
@@ -26,22 +26,23 @@ export default {
     name: 'FilterComponent',
     data() {
         return {
-            status: '',            
+            status: '',           
             store
         }
     },
     methods:{
         searchBy(type){
             console.log(type);
+
             if(type === 'archetypes'){
-                this.store.archeType = true;
+                this.store.archeTypeSelect = true;
                 this.store.textSearch = false;                
             } if (type === 'textsearch'){               
                 this.store.textSearch = true;
-                this.store.archeType = false;
+                this.store.archeTypeSelect = false;
             } if (type === ''){
                 this.store.textSearch = false;
-                this.store.archeType = false;
+                this.store.archeTypeSelect = false;
             }
         },
         getAllArchetypes(){
@@ -50,7 +51,7 @@ export default {
                 console.log(this.store.archetypeList);
             })
 
-        }
+        },
     },
     mounted(){
         this.getAllArchetypes()

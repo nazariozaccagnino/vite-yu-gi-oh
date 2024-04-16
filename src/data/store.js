@@ -4,7 +4,7 @@ export const store = reactive({
     apiUrl: 'https://db.ygoprodeck.com/api/v7/',
     options:{
         params: {        
-            lang:'language=it',
+            language:'it',
             num: 20,
             offset: 0,
         },
@@ -16,7 +16,8 @@ export const store = reactive({
     imageUrl: 'https://images.ygoprodeck.com/images/cards_small/',
     cardArray: [],
     loading: false,
-    archeType: false,
+    archeTypeSelect: false,
     textSearch: false,
     archetypeList: [],
+    typelist: '',
 });
