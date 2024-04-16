@@ -23,8 +23,8 @@
 <script>
 import { store } from '../data/store.js';
 import FilterComponent from './FilterComponent.vue'
-
 import axios from 'axios'
+
 export default {
     name: 'CardsComponent',
     components: {
@@ -39,7 +39,7 @@ export default {
         getCards() {
             
             this.store.loading = true;
-            axios.get(store.apiUrl).then((elements) => {
+            axios.get(store.apiUrl+store.params).then((elements) => {
                 this.store.cardArray = elements.data.data
                 console.log(this.store.cardArray);
             })

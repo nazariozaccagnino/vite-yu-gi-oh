@@ -8,8 +8,8 @@
     </div>
     <div>
         <div class="mx-3" :class="{'d-none': !store.archeType}">
-            <select class="form-select" @change="$emit('archetySearch', this.archetype)" v-model="archetype">
-                <option value="">Tutte</option>
+            <select class="form-select" @change="$emit('archetypeSearch', this.typelist)" v-model="typelist">
+                <option :value="archetypes.archetype_name" v-for="archetypes in store.archetypeList">{{archetypes.archetype_name}}</option>
             </select>
         </div>
         <div :class="{'d-none': !store.textSearch}">textSearch</div>
@@ -19,12 +19,14 @@
 
 <script>
 import { store } from '../data/store.js';
+import axios from 'axios';
+
 
 export default {
     name: 'FilterComponent',
     data() {
         return {
-            status: '',
+            status: '',            
             store
         }
     },
@@ -33,21 +35,25 @@ export default {
             console.log(type);
             if(type === 'archetypes'){
                 this.store.archeType = true;
-                this.store.textSearch = false;
-
-                
+                this.store.textSearch = false;                
             } if (type === 'textsearch'){               
-                this.store.textSearch = true
+                this.store.textSearch = true;
                 this.store.archeType = false;
-
             } if (type === ''){
-                this.store.textSearch = false
+                this.store.textSearch = false;
                 this.store.archeType = false;
             }
+        },
+        getAllArchetypes(){
+            axios.get(this.store.apiUrl + this.store.endpoints.archetypes).then((el)=>{
+                this.store.archetypeList = el.data.slice(0, 20)
+                console.log(this.store.archetypeList);
+            })
+
         }
     },
     mounted(){
-        
+        this.getAllArchetypes()
     }
 }
 </script>
