@@ -20,4 +20,5 @@ export const store = reactive({
     textSearch: false,
     archetypeList: [],
     typelist: '',
+    textinput:'',
 });

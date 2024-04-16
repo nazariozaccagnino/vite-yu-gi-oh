@@ -1,6 +1,6 @@
 <template>
     <div class="my-4 d-flex">
-        <FilterComponent @listSearch="archetypeSearch"/>
+        <FilterComponent @listSearch="archetypeSearch" @textsearch="searchByText"/>
     </div>
     <div class="text-center">
         <h4>Card caricate: {{ this.store.cardArray.length }}</h4>
@@ -57,6 +57,16 @@ export default {
             } 
             this.getCards()
         },
+        searchByText(){
+            console.log(this.store.textinput);
+            if(this.store.textinput){
+                this.store.options.params.name = this.store.textinput
+            } else{
+                delete this.store.options.params.name
+            }
+            this.getCards()
+
+        }
     },
     created() {
         this.getCards()

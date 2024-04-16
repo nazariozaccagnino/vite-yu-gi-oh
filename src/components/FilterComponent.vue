@@ -7,12 +7,17 @@
         </select>
     </div>
     <div>
-        <div class="mx-3" :class="{'d-none': !store.archeTypeSelect}">
+        <div class="mx-3" :class="{ 'd-none': !store.archeTypeSelect }">
             <select class="form-select" @change="$emit('listSearch')" v-model="store.typelist">
-                <option default :value="archetypes.archetype_name" v-for="archetypes in store.archetypeList">{{archetypes.archetype_name}}</option>
+                <option default :value="archetypes.archetype_name" v-for="archetypes in store.archetypeList">
+                    {{ archetypes.archetype_name }}</option>
             </select>
         </div>
-        <div :class="{'d-none': !store.textSearch}">textSearch</div>
+        <div :class="{ 'd-none': !store.textSearch }">
+            <div class="input-group mx-3">
+                <input type="text" class="form-control searchbox" placeholder="Ricerca per nome - premere invio" v-model="store.textinput" @keyup.enter="$emit('textsearch')">
+            </div>
+        </div>
 
     </div>
 </template>
@@ -26,37 +31,41 @@ export default {
     name: 'FilterComponent',
     data() {
         return {
-            status: '',           
+            status: '',
             store
         }
     },
-    methods:{
-        searchBy(type){
+    methods: {
+        searchBy(type) {
             console.log(type);
 
-            if(type === 'archetypes'){
+            if (type === 'archetypes') {
                 this.store.archeTypeSelect = true;
-                this.store.textSearch = false;                
-            } if (type === 'textsearch'){               
+                this.store.textSearch = false;
+            } if (type === 'textsearch') {
                 this.store.textSearch = true;
                 this.store.archeTypeSelect = false;
-            } if (type === ''){
+            } if (type === '') {
                 this.store.textSearch = false;
                 this.store.archeTypeSelect = false;
             }
         },
-        getAllArchetypes(){
-            axios.get(this.store.apiUrl + this.store.endpoints.archetypes).then((el)=>{
+        getAllArchetypes() {
+            axios.get(this.store.apiUrl + this.store.endpoints.archetypes).then((el) => {
                 this.store.archetypeList = el.data.slice(0, 20)
                 console.log(this.store.archetypeList);
             })
 
         },
     },
-    mounted(){
+    mounted() {
         this.getAllArchetypes()
     }
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.searchbox{
+    width: 500px;
+}
+</style>
